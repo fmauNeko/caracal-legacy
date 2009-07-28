@@ -16,6 +16,15 @@
 		<input type="submit" value="Envoyer"/>
 	</div>
 	</form>
+	<h2>Liste des fichiers envoyés</h2>
+	<ul id="liste_fichiers">
+<?php foreach($fichiers as $id => $fichier) { ?>
+		<li class="<?php if ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
+			Fichier au nom de <?php echo $fichier["nom"]; ?>
+
+		</li>
+<?php } ?>
+	</ul>
 </body>
 </html>
 
