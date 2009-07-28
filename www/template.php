@@ -19,9 +19,8 @@
 	<h2>Liste des fichiers envoyés</h2>
 	<ul id="liste_fichiers">
 <?php foreach($fichiers as $id => $fichier) { ?>
-		<li class="<?php if ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
-			Fichier au nom de <?php echo $fichier["nom"]; ?>
-
+		<li class="<?php if($fichier["nouveau"]) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
+			<a href="#"><img src="<?php if ($fichier["type"]) echo $fichier["type"]; else echo "fichier";?>.png" alt="" /><?php echo $fichier["nom"]; ?></a>
 		</li>
 <?php } ?>
 	</ul>

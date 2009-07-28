@@ -2,11 +2,11 @@
 
 include("config.php");
 
-$fichiers = array(array("nom" => "Salut"),
+$fichiers = array(array("nom" => "Salut", "nouveau" => true, "type" => "image"),
 				  array("nom" => "Coucou"),
 				  array("nom" => "Héhé"),
-				  array("nom" => "Koinkoin"),
-				  array("nom" => "Ou pas"),
+				  array("nom" => "Koinkoin", "type" => "image"),
+				  array("nom" => "Ou pas", "type" => "image"),
 				  array("nom" => "Test")
 			);
 
