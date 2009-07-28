@@ -11,10 +11,7 @@
 
 	<form action="#" method="post" enctype="multipart/form-data">
 	<div>
-		<label for="file">Fichier :</label><input type="file" name="file" /><br />
-		<label for="viewpasswd">Mot de passe<em>(consultation)</em> :</label><input type="password" value="" name="viewpasswd" /><br />
-		<label for="delpasswd">Mot de passe <em>(suppression)</em>:</label><input type="password" value="" name="delpasswd" /><br />
-		<label foir="counter">Auto-suppression après <input type="text" name="counter" size="3"value="42" /> vues</label><br />
+		<label for="file">Fichier à envoyer:</label><input type="file" name="file" /><br />
 		<input type="submit" value="Envoyer"/>
 	</div>
 	</form>
