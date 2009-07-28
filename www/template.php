@@ -10,10 +10,13 @@
 	<h1><?php echo $titre_site; ?></h1>
 
 	<form action="#" method="post" enctype="multipart/form-data">
+	<div>
 		<label for="file">Fichier :</label><input type="file" name="file" /><br />
-		<label for="viewpasswd">Mot de passe (consultation) :</label><input type="password" value="" name="viewpasswd" /><br />
-		<label for="delpasswd">Mot de passe (suppression):</label><input type="password" value="" name="delpasswd" /><br />
-		<label foir="counter">Auto-suppression après <input type="text" name="counter" size="3" /> vues</label><br />
+		<label for="viewpasswd">Mot de passe<em>(consultation)</em> :</label><input type="password" value="" name="viewpasswd" /><br />
+		<label for="delpasswd">Mot de passe <em>(suppression)</em>:</label><input type="password" value="" name="delpasswd" /><br />
+		<label foir="counter">Auto-suppression après <input type="text" name="counter" size="3"value="42" /> vues</label><br />
+		<input type="submit" value="Envoyer"/>
+	</div>
 	</form>
 </body>
 </html>
