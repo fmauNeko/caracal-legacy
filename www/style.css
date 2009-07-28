@@ -23,13 +23,13 @@ background: url(fond_form.png) no-repeat;
 
 form div
 {
-padding-top:276px;
+padding-top:287px;
 padding-left:76px;
 font-weight:bold;
 }
 
 form input[type=submit]
 {
-float:right;
-margin-right:289px;
+	/*float:right;*/
+	/*margin-right:289px;*/
 }

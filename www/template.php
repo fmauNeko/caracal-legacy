@@ -11,7 +11,8 @@
 
 	<form action="#" method="post" enctype="multipart/form-data">
 	<div>
-		<label for="file">Fichier à envoyer:</label><input type="file" name="file" /><br />
+		<label for="file">Fichier à envoyer:</label><br />
+		<input type="file" name="file" /><br />
 		<input type="submit" value="Envoyer"/>
 	</div>
 	</form>
