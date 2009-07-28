@@ -8,6 +8,13 @@
 </head>
 <body>
 	<h1><?php echo $titre_site; ?></h1>
+
+	<form action="#" method="post" enctype="multipart/form-data">
+		<label for="file">Fichier :</label><input type="file" name="file" /><br />
+		<label for="viewpasswd">Mot de passe (consultation) :</label><input type="password" value="" name="viewpasswd" /><br />
+		<label for="delpasswd">Mot de passe (suppression):</label><input type="password" value="" name="delpasswd" /><br />
+		<label foir="counter">Auto-suppression après <input type="text" name="counter" size="3" /> vues</label><br />
+	</form>
 </body>
 </html>
 
