@@ -18,9 +18,19 @@
 		<input type="submit" value="Envoyer"/>
 	</div>
 	</form>
+<?php if (!is_empty($erreurs))
+{
+?>
+	<h2>Erreurs</h2>
+<?php foreach($erreurs as $id => $erreur)
+{
+?>
+	<p class="erreur"><?php echo $erreur; ?></p>
+<?php } } ?>
 	<h2>Liste des fichiers envoyés</h2>
 	<ul id="liste_fichiers">
-<?php foreach($fichiers as $id => $fichier) {
+<?php foreach($fichiers as $id => $fichier)
+{
 $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();	
 ?>
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >

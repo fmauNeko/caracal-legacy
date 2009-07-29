@@ -1,5 +1,62 @@
 <?php
 
+# Gestion manuelle des erreurs, mais on s'en sert aussi pour les messages systèmes :-)
+function gestion_erreurs($errno, $errstr, $errfile, $errline)
+{
+	global $erreurs;
+
+	$erreurs[] = "$errstr ; fichier $errfile, ligne $errline";
+
+}
+
+# Coder ses propres fonctions…
+function is_empty($tableau)
+{
+	return count($tableau) == 0;
+}
+
+function verifier_droits()
+{
+	if (!is_writable('.'))
+	{
+		trigger_error("Impossible d'écrire dans le dossier de base");
+	}
+
+	if (!is_writable('files/'))
+	{
+		trigger_error("Impossible d'écrire dans le dossier des fichiers");
+	}
+}
+
+# Fonction pour enregistrer la liste
+
+function get_fichiers() {
+
+	global $fichier_liste;
+
+	if (!file_exists($fichier_liste))
+	{
+		if (!file_put_contents($fichier_liste, '[]'))
+		{
+			echo "Impossible de créer la liste";
+			exit();
+		}
+	}
+
+	# Récupération la liste
+	$liste = file_get_contents($fichier_liste);
+
+	if (!$liste)
+	{
+		echo "Une erreur";
+		exit();
+	}
+
+	$fichiers = json_decode($liste, true); 
+
+	return $fichiers;
+}
+
 /**
  * transforms a php.ini string representing a value in an integer
  * @param $value the value from php.ini
@@ -32,34 +89,4 @@ function jyraphe_ini_to_bytes($value) {
 function jyraphe_get_max_upload_size() {
   return min(jyraphe_ini_to_bytes(ini_get('post_max_size')), jyraphe_ini_to_bytes(ini_get('upload_max_filesize')));
 }
-
-# Fonction pour enregistrer la liste
-
-function get_fichiers() {
-
-	global $fichier_liste;
-
-	if (!file_exists($fichier_liste))
-	{
-		if (!file_put_contents($fichier_liste, '[]'))
-		{
-			echo "Impossible de créer la liste";
-			exit();
-		}
-	}
-
-	# Récupération la liste
-	$liste = file_get_contents($fichier_liste);
-
-	if (!$liste)
-	{
-		echo "Une erreur";
-		exit();
-	}
-
-	$fichiers = json_decode($liste, true); 
-
-	return $fichiers;
-}
-
 ?>

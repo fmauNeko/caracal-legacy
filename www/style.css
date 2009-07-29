@@ -119,3 +119,9 @@ li.nouveau:hover
 {
 background-color:#DB7335;
 }
+
+p.erreur {
+margin-left:40px;
+color:#DB7335;
+font-weight:bold;
+}
