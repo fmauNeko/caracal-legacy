@@ -3,8 +3,17 @@
 include("config.php");
 include("bordel.php");
 
+if (!file_exists($fichier_liste))
+{
+	if (!file_put_contents($fichier_liste, '[]'))
+	{
+		echo "Impossible de créer la liste";
+		exit();
+	}
+}
+
 # Récupération la liste
-$liste = file_get_contents('liste.json');
+$liste = file_get_contents($fichier_liste);
 
 if (!$liste)
 {
