@@ -33,4 +33,31 @@ function jyraphe_get_max_upload_size() {
   return min(jyraphe_ini_to_bytes(ini_get('post_max_size')), jyraphe_ini_to_bytes(ini_get('upload_max_filesize')));
 }
 
+# Fonction pour enregistrer la liste
+
+function get_fichiers($fichier_liste) {
+
+	if (!file_exists($fichier_liste))
+	{
+		if (!file_put_contents($fichier_liste, '[]'))
+		{
+			echo "Impossible de créer la liste";
+			exit();
+		}
+	}
+
+	# Récupération la liste
+	$liste = file_get_contents($fichier_liste);
+
+	if (!$liste)
+	{
+		echo "Une erreur";
+		exit();
+	}
+
+	$fichiers = json_decode($liste, true); 
+
+	return $fichiers;
+}
+
 ?>

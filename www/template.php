@@ -21,7 +21,7 @@
 	<ul id="liste_fichiers">
 <?php foreach($fichiers as $id => $fichier) { ?>
 		<li class="<?php if($fichier["nouveau"]) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
-			<a href="<?php echo $stockage . $fichier["chemin"]; ?>"><img src="<?php if ($fichier["type"]) echo $fichier["type"]; else echo "fichier";?>.png" alt="" /><?php echo $fichier["nom"]; ?></a>
+			<a href="<?php echo $stockage , $fichier["chemin"]; ?>"><img src="<?php if ($fichier["type"]) echo $fichier["type"]; else echo "fichier";?>.png" alt="" /><?php echo $fichier["nom"]; ?></a>
 		</li>
 <?php } ?>
 	</ul>

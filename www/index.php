@@ -3,25 +3,8 @@
 include("config.php");
 include("bordel.php");
 
-if (!file_exists($fichier_liste))
-{
-	if (!file_put_contents($fichier_liste, '[]'))
-	{
-		echo "Impossible de créer la liste";
-		exit();
-	}
-}
+$fichiers = get_fichiers($fichier_liste);
 
-# Récupération la liste
-$liste = file_get_contents($fichier_liste);
-
-if (!$liste)
-{
-	echo "Une erreur";
-	exit();
-}
-
-$fichiers = json_decode($liste, true); 
 
 if(isset($_FILES['file']))
 {
@@ -37,9 +20,14 @@ if(isset($_FILES['file']))
 		$error_alert = "Le fichier " . $fullname . " n'a PAS été uploadé, veuillez réessayer";
 	}
 
-	$fichiers[] = array("nom" => $name, "chemin" => $sha1sum . $extension, "nouveau" => true, "type" => "image");
+	$fichiers[] = array("nom" => $name, "chemin" => $sha1sum . $extension, "type" => "image", "timestamp" => time());
 
 	file_put_contents('liste.json', json_encode($fichiers));
+
+	// Pour ne pas reposter le fichier en actualisant la page
+	header("Location: .");
+
+	exit();
 
 }
 
