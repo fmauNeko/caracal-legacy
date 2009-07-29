@@ -24,7 +24,13 @@ if(isset($_FILES['file']))
 		trigger_error("Le fichier " . $fullname . " n'a PAS été uploadé, veuillez réessayer");
 	}
 
-	array_unshift($fichiers, array("nom" => $name, "chemin" => $sha1sum . $extension, "type" => "image", "timestamp" => time()));
+	array_unshift($fichiers, array(
+		"nom" => $name,
+		"chemin" => $sha1sum . $extension,
+		"type" => "image",
+		"timestamp" => time(),
+		"message" => htmlspecialchars(substr($_POST['message'], 0, 100),ENT_QUOTES, UTF-8)
+	));
 
 	file_put_contents('liste.json', json_encode($fichiers));
 
