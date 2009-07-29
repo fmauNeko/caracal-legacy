@@ -11,8 +11,8 @@
 
 	<form action="#" method="post" enctype="multipart/form-data">
 	<div>
-		<input type="hidden" name="MAX_FILE_SIZE" value="12345" />
-		<label for="file">Fichier à envoyer:</label><br />
+		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo jyraphe_get_max_upload_size(); ?>" />
+		<label for="file">Fichier à envoyer (maximum <?php echo jyraphe_get_max_upload_size()/1048576; ?> Mio) :</label><br />
 		<input type="file" name="file" /><br />
 		<input type="submit" value="Envoyer"/>
 	</div>
