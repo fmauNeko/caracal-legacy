@@ -3,13 +3,18 @@
 include("config.php");
 include("bordel.php");
 
-$fichiers = array(array("nom" => "Salut", "nouveau" => true, "type" => "image"),
-				  array("nom" => "Coucou"),
-				  array("nom" => "Héhé"),
-				  array("nom" => "Koinkoin", "type" => "image"),
-				  array("nom" => "Ou pas", "type" => "image"),
-				  array("nom" => "Test")
-			);
+# Récupération la liste
+$liste = file_get_contents('liste.json');
+
+if (!$liste)
+{
+	echo "Une erreur";
+	exit();
+}
+
+$fichiers = json_decode($liste, true); 
+
+# file_put_contents('liste.json', json_encode($fichiers));
 
 # Fonction trop bien reprise de jyraphe
 $taille_max_upload = jyraphe_get_max_upload_size();
