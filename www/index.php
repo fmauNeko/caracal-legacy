@@ -20,7 +20,7 @@ if(isset($_FILES['file']))
 		$error_alert = "Le fichier " . $fullname . " n'a PAS été uploadé, veuillez réessayer";
 	}
 
-	$fichiers[] = array("nom" => $name, "chemin" => $sha1sum . $extension, "type" => "image", "timestamp" => time());
+	array_unshift($fichiers, array("nom" => $name, "chemin" => $sha1sum . $extension, "type" => "image", "timestamp" => time()));
 
 	file_put_contents('liste.json', json_encode($fichiers));
 
