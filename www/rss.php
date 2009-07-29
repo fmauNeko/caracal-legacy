@@ -3,7 +3,7 @@
 include("config.php");
 include("bordel.php");
 
-$fichiers = get_fichiers($fichier_liste);
+$fichiers = get_fichiers();
 
 ?>
 <?xml version="1.0" encoding="UTF-8"?>

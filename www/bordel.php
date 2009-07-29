@@ -35,7 +35,9 @@ function jyraphe_get_max_upload_size() {
 
 # Fonction pour enregistrer la liste
 
-function get_fichiers($fichier_liste) {
+function get_fichiers() {
+
+	global $fichier_liste;
 
 	if (!file_exists($fichier_liste))
 	{

@@ -3,7 +3,7 @@
 include("config.php");
 include("bordel.php");
 
-$fichiers = get_fichiers($fichier_liste);
+$fichiers = get_fichiers();
 
 
 if(isset($_FILES['file']))
