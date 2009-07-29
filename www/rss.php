@@ -19,7 +19,9 @@ $url = 	$url_site . $stockage . $fichier["chemin"];
 		<item>
 			<title><?php echo $fichier["nom"]; ?></title>
 			<pubDate><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></pubDate>
-			<description>Fichier &lt;a href="<?php echo $url;?>"&gt;<?php echo $fichier["nom"]; ?>&lt;/a&gt;</description>
+			<description>
+			<?php echo $fichier["message"]; ?>	
+			&lt;br/&gt;Fichier &lt;a href="<?php echo $url;?>"&gt;<?php echo $fichier["nom"]; ?>&lt;/a&gt;</description>
 			<link><?php echo $url; ?></link>
 			<guid><?php echo $url; ?></guid>
 		</item>

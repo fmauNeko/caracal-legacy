@@ -11,6 +11,6 @@ $stockage = "files/";
 $fichier_liste = 'liste.json';
 
 # Secondes avant qu'un fichier ne soit plus marqué comme nouveau
-$delai_nouveaute = 1800;
+$delai_nouveaute = 1200;
 
 ?>

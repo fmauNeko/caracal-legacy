@@ -23,17 +23,40 @@ background: url(fond.jpeg) no-repeat;
 
 form div
 {
-padding-top:287px;
-padding-left:76px;
+padding-left:67px;
+padding-top:257px;
 font-weight:bold;
 font-size:130%;
 }
 
-/*form input[type=submit]*/
-/*{*/
-/**//*float:right;*/
-/**//*margin-right:289px;*/
-/*}*/
+form p
+{
+position:relative;
+margin:0px 0px 8px 0px;
+}
+
+textarea
+{
+width:226px;
+height:50px;
+background:transparent url(transparent.png) repeat;
+color:white;
+font-family:sans-serif;
+font-weight:bold;
+border:none;
+padding:2px;
+font-size:70%;
+}
+
+form input[type=submit]
+{
+display:block;
+position:absolute;
+left:245px;
+bottom:0px;
+height:57px;
+margin-right:289px;
+}
 
 h2
 {
@@ -124,4 +147,15 @@ p.erreur {
 margin-left:40px;
 color:#DB7335;
 font-weight:bold;
+}
+
+li span
+{
+display:block;
+position:absolute;
+right:5px;
+top:5px;
+height:20px;
+line-height:20px;
+font-style:italic;
 }
