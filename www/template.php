@@ -3,7 +3,7 @@
 	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="-//W3C//DTD XHTML 1.1//EN" xml:lang="fr_FR" xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
 <head>
-	<link href="style.css" media="screen" rel="Stylesheet" type="text/css" />
+	<link href="design/style.css" media="screen" rel="Stylesheet" type="text/css" />
 	<link rel="alternate" title="Flux rss" type="application/rss+xml" href="rss.php" />
 	<title><?php echo $titre_site; ?></title>
 </head>
@@ -40,7 +40,7 @@
 $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();	
 ?>
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
-			<a href="<?php echo $stockage , $fichier["chemin"]; ?>"><img src="<?php if ($fichier["type"]) echo $fichier["type"]; else echo "fichier";?>.png" alt="" /><?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?></a><span class="date"><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></span>		</li>
+			<a href="<?php echo $stockage , $fichier["chemin"]; ?>"><img src="icons/<?php if ($fichier["type"]) echo $fichier["type"]; else echo "fichier";?>.png" alt="" /><?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?></a><span class="date"><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></span>		</li>
 <?php } ?>
 	</ul>
 </body>
