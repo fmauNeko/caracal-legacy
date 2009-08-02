@@ -20,6 +20,9 @@ if(isset($_FILES['file']))
 	$fullname = $name . $extension;
 	$mimetype = get_mime_type($_FILES['file']['tmp_name']);
 
+	if(in_array($extension, $dangerous_exts))
+		$extension .= ".disabled";
+
 	if(!move_uploaded_file($_FILES['file']['tmp_name'], $stockage . $sha1sum . $extension))
 	{
 		trigger_error("Le fichier " . $fullname . " n'a PAS été uploadé, veuillez réessayer");

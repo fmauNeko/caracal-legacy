@@ -21,4 +21,7 @@ $nb_elements_par_page = 20;
 
 # Format de la date (stfrtime)
 $date_format = "%A %d %B %Y, %T";
+
+# Liste des extensions à modifier pour éviter de compromettre le serveur
+$dangerous_exts = array(".php", ".cgi", ".fcgi", ".rb", ".py", ".pl", ".sh", ".php3", ".php4", ".pht", ".phtml", ".csh");
 ?>
