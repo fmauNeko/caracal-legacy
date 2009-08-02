@@ -99,7 +99,7 @@ position:relative;
 li img
 {
 position:absolute;
-top:2px;
+top:8px;
 left:6px;
 }
 
@@ -153,9 +153,19 @@ li span
 {
 display:block;
 position:absolute;
-right:5px;
-top:5px;
 height:20px;
 line-height:20px;
 font-style:italic;
+}
+
+li span.date
+{
+right:5px;
+top:5px;
+}
+
+li span.mimetype
+{
+right:5px;
+bottom:5px;
 }
