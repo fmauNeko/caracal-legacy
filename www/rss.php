@@ -14,14 +14,20 @@ $fichiers = get_fichiers();
 		<link><?php echo $url_site; ?></link>
 
 <?php foreach($fichiers as $id => $fichier) {
-$url = 	$url_site . $stockage . $fichier["chemin"];
+$url_lien	= 	$url_site . $stockage . $fichier["chemin"];
+$url_icons	= 	$url_site . "icons/" . get_icone($fichier["type"]) . ".png";
 ?>
 		<item>
 			<title><?php echo $fichier["nom"]; ?></title>
 			<pubDate><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></pubDate>
 			<description>
 			<?php echo $fichier["message"]; ?>	
-			&lt;br/&gt;Fichier &lt;a href="<?php echo $url;?>"&gt;<?php echo $fichier["nom"]; ?>&lt;/a&gt;</description>
+			&lt;br/&gt;
+			&lt;a href="<?php echo $url_lien;?>"&gt;
+				&lt;img src="<?php echo $url_icons;?>" alt="<?php echo $fichier["chemin"];?>" /&gt;
+				<?php echo $fichier["nom"]; ?>
+			&lt;/a&gt;
+			</description>
 			<link><?php echo $url; ?></link>
 			<guid><?php echo $url; ?></guid>
 		</item>
