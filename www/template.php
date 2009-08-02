@@ -57,7 +57,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 if (count($pagination["liens_a"]) > 1)
 {
 
-	echo '<p>Pages: ';
+	echo '<p class="pagination">Pages: ';
 	
 	$it = count($pagination["liens_a"]);
 
