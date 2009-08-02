@@ -21,7 +21,7 @@ if(isset($_FILES['file']))
 	$mimetype = get_mime_type($_FILES['file']['tmp_name']);
 
 	if(in_array($extension, $dangerous_exts))
-		$extension .= ".disabled";
+		$extension = ".txt";
 
 	if(!move_uploaded_file($_FILES['file']['tmp_name'], $stockage . $sha1sum . $extension))
 	{
