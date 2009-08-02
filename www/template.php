@@ -35,7 +35,7 @@
 <?php } } ?>
 	<h2>Liste des fichiers envoyés</h2>
 	<ul id="liste_fichiers">
-<?php foreach($fichiers as $id => $fichier)
+<?php foreach($pagination["liste"] as $id => $fichier)
 {
 $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();	
 ?>
@@ -50,6 +50,39 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 	</li>
 <?php } ?>
 	</ul>
+
+	
+<?php
+
+if (count($pagination["liens_a"]) > 1)
+{
+
+	echo '<p>Pages: ';
+	
+	$it = count($pagination["liens_a"]);
+
+	for ($i = 0; $i < $it; $i++)
+	{
+		$num_page = $pagination["liens_a"][$i];
+		echo "<a href=\"?page=$num_page\">$num_page</a> ";
+	}
+
+	if ($pagination["sautes"])
+	{
+		echo "… ";
+	};
+		
+	$it = count($pagination["liens_b"]);
+
+	for ($i = 0; $i < $it; $i++)
+	{
+		$num_page = $pagination["liens_b"][$i];
+		echo "<a href=\"?page=$num_page\">$num_page</a> ";
+	}
+	echo '</p>';
+
+	}
+?>
 </body>
 </html>
 

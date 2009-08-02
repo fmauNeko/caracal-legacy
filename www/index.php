@@ -50,6 +50,21 @@ if(isset($_FILES['file']))
 # Fonction trop bien reprise de jyraphe
 $taille_max_upload = jyraphe_get_max_upload_size();
 
+$page = 0;
+
+# Gestion de la page
+if (isset($_GET["page"]))
+{
+	$page = (int) $_GET["page"];
+
+	if ($page < 0)
+	{
+		$page = 0;
+	}
+}
+
+$pagination = mon_pager($fichiers, $page, $nb_elements_par_page, 5);
+
 include("template.php");
 
 ?>
