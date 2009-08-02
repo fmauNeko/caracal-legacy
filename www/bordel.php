@@ -28,7 +28,7 @@ function get_mime_type($filename)
 {
 	if(in_array('fileinfo', get_loaded_extensions()))
 	{
-		$finfo = finfo_open(FILEINFO_MIME, "mime.magic");
+		$finfo = finfo_open(FILEINFO_MIME, "magic.mime");
 		$mimetype = finfo_file($finfo, $filename);
 		finfo_close($finfo);
 	} else {
