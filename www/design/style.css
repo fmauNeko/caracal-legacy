@@ -149,23 +149,24 @@ color:#DB7335;
 font-weight:bold;
 }
 
-li span
+li span.date
 {
 display:block;
 position:absolute;
 height:20px;
 line-height:20px;
 font-style:italic;
-}
-
-li span.date
-{
 right:5px;
 top:5px;
 }
 
 li span.mimetype
 {
+display:block;
+position:absolute;
+height:20px;
+line-height:20px;
+font-style:italic;
 right:5px;
 bottom:5px;
 }
