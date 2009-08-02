@@ -1,5 +1,28 @@
 <?php
 
+# Récupération de l'icône en fonction de type MIME
+function get_icone($mime)
+{
+	$file = str_replace('/', '-', $mime);
+
+	if (file_exists("icons/$file.png"))
+	{
+		return $file;
+	}
+
+	$generics = array("image", "audio", "text", "video", "package");
+
+	foreach($generics as $id => $generic)
+	{
+		if (strpos($mime, $generic) !== FALSE)
+		{
+			return "$generic-x-generic";
+		}
+	}
+
+	return "unknown";
+}
+
 # Wrapper pour la récupération du type MIME
 function get_mime_type($filename)
 {

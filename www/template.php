@@ -13,7 +13,10 @@
 	<form action="#" method="post" enctype="multipart/form-data">
 	<div>
 		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $taille_max_upload; ?>" />
-		<p>
+		<p>$file;
+		
+
+		$generics = new
 			<label for="file">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
 			<input type="file" name="file" /><br />
 		</p>
@@ -40,7 +43,13 @@
 $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();	
 ?>
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
-			<a href="<?php echo $stockage , $fichier["chemin"]; ?>"><img src="icons/<?php $type = preg_replace("/\//", "-", $fichier["type"]); if (file_exists("icons/$type.png")) echo $type; else echo "unknown";?>.png" alt="" /><?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?></a><span class="date"><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></span><span class="mimetype"><?php echo $fichier["type"]; ?></span>
+			<a href="<?php echo $stockage , $fichier["chemin"]; ?>">
+				<img src="icons/<?php echo get_icone($fichier["type"]); ?>.png" alt="" />
+				<?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?>
+			</a>
+			
+			<span class="date"><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></span>
+			<span class="mimetype"><?php echo $fichier["type"]; ?></span>
 	</li>
 <?php } ?>
 	</ul>
