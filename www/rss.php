@@ -13,9 +13,16 @@ $fichiers = get_fichiers();
 		<description><?php echo $titre_site; ?></description>
 		<link><?php echo $url_site; ?></link>
 
-<?php foreach($fichiers as $id => $fichier) {
-$url_lien	= 	$url_site . $stockage . $fichier["chemin"];
-$url_icons	= 	$url_site . "icons/" . get_icone($fichier["type"]) . ".png";
+<?php
+$it = min(count($fichiers), $nb_elements_rss);
+
+for ($i = 0; $i < $it; $i++)
+{
+
+	$fichier = $fichiers[$i];
+
+	$url_lien	= 	$url_site . $stockage . $fichier["chemin"];
+	$url_icons	= 	$url_site . "icons/" . get_icone($fichier["type"]) . ".png";
 ?>
 		<item>
 			<title><?php echo $fichier["nom"]; ?></title>
