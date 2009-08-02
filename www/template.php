@@ -13,10 +13,7 @@
 	<form action="#" method="post" enctype="multipart/form-data">
 	<div>
 		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $taille_max_upload; ?>" />
-		<p>$file;
-		
-
-		$generics = new
+		<p>
 			<label for="file">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
 			<input type="file" name="file" /><br />
 		</p>
