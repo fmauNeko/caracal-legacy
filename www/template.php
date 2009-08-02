@@ -19,7 +19,7 @@
 		</p>
 		<p>
 			<label for="message_input">Message:</label><br />
-			<textarea name="message" id="message_input" ></textarea>
+			<textarea name="message" id="message_input" rows="3" cols="10"></textarea>
 			<input type="submit" value="Envoyer"/>
 		</p>
 	</div>
