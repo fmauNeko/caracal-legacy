@@ -42,7 +42,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
 			<a href="<?php echo $stockage , $fichier["chemin"]; ?>">
 				<img src="icons/<?php echo get_icone($fichier["type"]); ?>.png" alt="" />
-				<span style="text-weignt: bold;"><?php echo $fichier["nom"]; ?></span> - <?php echo $fichier["message"]; ?>
+				<span style="font-weight: bold;"><?php echo $fichier["nom"]; ?></span> - <?php echo $fichier["message"]; ?>
 			</a>
 			
 			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
