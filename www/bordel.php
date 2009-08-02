@@ -8,42 +8,45 @@ function mon_pager($liste = array(), $page = 0, $nb_par_page = 12, $sauts = 5)
 	# On part du principe qu'en php, tout est référence. Même si c'est faux.
 	$objets = array_slice($liste, $nb_par_page * $page, $nb_par_page);
 
-	$nb_elements = count($liste);
+	$nb_elements = (int) (count($liste) / $nb_par_page);
 
-	$liens = array();
+	$liens_a = array();
+	$liens_b = array();
 
 	# PHP ne compile pas en optimisant, c'est beau <3
 	$it = min($sauts, $nb_elements);
 
 	for ($i = 0; $i < $it; $i++)
 	{
-		$liens[] = 	$i;
+		$liens_a[] = 	$i;
 	}
 
-	$dernier = end($liens) + 1;
+	$dernier = end($liens_a) + 1;
 	
-	$sautes = true;
+	$sautes = false;
 
 	$st = max($dernier, $nb_elements - $sauts);
 
 	if ($st < $nb_elements)
 	{
-		$liens[] = 	$st;
 
-		if ($st === $dernier)
+		if ($st >= ($dernier+1))
 		{
 			$sautes = true;
 		}
+		
+		$liens_b[] = 	$st;
 
 		for ($i = $st + 1; $i < $nb_elements; $i++)
 		{
-			$liens[] = 	$i;
+			$liens_b[] = 	$i;
 		}
 	}
 
-	return array("liste"	=> $liste,
+	return array("liste"	=> $objets,
 				 "sautes"	=> $sautes,
-				 "liens"	=> $liens
+				 "liens_a"	=> $liens_a,
+				 "liens_b"	=> $liens_b
 				);
 }
 
@@ -110,6 +113,11 @@ function verifier_droits()
 	if (!is_writable('files/'))
 	{
 		trigger_error("Impossible d'écrire dans le dossier des fichiers");
+	}
+	
+	if (file_exists('liste.json') && !is_writable('liste.json'))
+	{
+		trigger_error("Impossible d'écrire dans la liste des fichiers");
 	}
 }
 
