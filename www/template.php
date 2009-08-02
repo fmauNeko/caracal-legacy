@@ -40,7 +40,7 @@
 $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();	
 ?>
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
-			<a href="<?php echo $stockage , $fichier["chemin"]; ?>"><img src="icons/<?php if ($fichier["type"]) echo $fichier["type"]; else echo "fichier";?>.png" alt="" /><?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?></a><span class="date"><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></span>		</li>
+			<a href="<?php echo $stockage , $fichier["chemin"]; ?>"><img src="icons/<?php $type = preg_replace("/", "-", $fichier["type"]); if (file_exists("icons/$type")) echo $type; else echo "unknown";?>.png" alt="" /><?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?></a><span class="date"><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></span>		</li>
 <?php } ?>
 	</ul>
 </body>

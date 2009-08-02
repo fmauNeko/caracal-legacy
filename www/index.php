@@ -19,6 +19,10 @@ if(isset($_FILES['file']))
 	$name = basename($_FILES['file']['name'], $extension);
 	$fullname = $name . $extension;
 
+	$finfo = finfo_open(FILEINFO_MIME, "mime.magic");
+	$mimetype = finfo_file($finfo, $_FILES['file']['tmp_name']);
+	finfo_close($finfo);
+
 	if(!move_uploaded_file($_FILES['file']['tmp_name'], $stockage . $sha1sum . $extension))
 	{
 		trigger_error("Le fichier " . $fullname . " n'a PAS été uploadé, veuillez réessayer");
@@ -27,7 +31,7 @@ if(isset($_FILES['file']))
 	array_unshift($fichiers, array(
 		"nom" => $name,
 		"chemin" => $sha1sum . $extension,
-		"type" => "image",
+		"type" => $mimetype,
 		"timestamp" => time(),
 		"message" => htmlspecialchars(substr($_POST['message'], 0, 100),ENT_QUOTES, UTF-8)
 	));
