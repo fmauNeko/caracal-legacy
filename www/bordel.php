@@ -1,5 +1,20 @@
 <?php
 
+# Wrapper pour la récupération du type MIME
+function get_mime_type($filename)
+{
+	if(in_array('fileinfo', get_loaded_extensions()))
+	{
+		$finfo = finfo_open(FILEINFO_MIME, "mime.magic");
+		$mimetype = finfo_file($finfo, $filename);
+		finfo_close($finfo);
+	} else {
+		$mimetype = mime_content_type($filename);
+	}
+
+	return $mimetype;
+}
+
 # Gestion manuelle des erreurs, mais on s'en sert aussi pour les messages systèmes :-)
 function gestion_erreurs($errno, $errstr, $errfile, $errline)
 {

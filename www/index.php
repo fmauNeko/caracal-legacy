@@ -18,10 +18,7 @@ if(isset($_FILES['file']))
 	$extension = "." . end(explode(".", $_FILES['file']['name']));
 	$name = basename($_FILES['file']['name'], $extension);
 	$fullname = $name . $extension;
-
-	$finfo = finfo_open(FILEINFO_MIME, "mime.magic");
-	$mimetype = finfo_file($finfo, $_FILES['file']['tmp_name']);
-	finfo_close($finfo);
+	$mimetype = get_mime_type($_FILES['file']['tmp_name']);
 
 	if(!move_uploaded_file($_FILES['file']['tmp_name'], $stockage . $sha1sum . $extension))
 	{
