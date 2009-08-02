@@ -17,7 +17,7 @@ $delai_nouveaute = 1200;
 $nb_elements_rss = 20;
 
 # Nombre d'éléments par page
-$nb_elements_par_page = 20;
+$nb_elements_par_page = 12;
 
 # Format de la date (stfrtime)
 $date_format = "%A %d %B %Y, %T";

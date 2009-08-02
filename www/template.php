@@ -14,12 +14,12 @@
 	<div>
 		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $taille_max_upload; ?>" />
 		<p>
-			<label for="file">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
-			<input type="file" name="file" /><br />
+			<label for="file_input">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
+			<input type="file" name="file" id="file_input" /><br />
 		</p>
 		<p>
-			<label for="message">Message:</label><br />
-			<textarea name="message" ></textarea>
+			<label for="message_input">Message:</label><br />
+			<textarea name="message" id="message_input" ></textarea>
 			<input type="submit" value="Envoyer"/>
 		</p>
 	</div>
@@ -28,7 +28,7 @@
 {
 ?>
 	<h2>Erreurs</h2>
-<?php foreach($erreurs as $id => $erreur)
+<?php foreach($pagination["liste"] as $id => $erreur)
 {
 ?>
 	<p class="erreur"><?php echo $erreur; ?></p>
@@ -42,7 +42,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
 			<a href="<?php echo $stockage , $fichier["chemin"]; ?>">
 				<img src="icons/<?php echo get_icone($fichier["type"]); ?>.png" alt="" />
-				<?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?>
+				<span style="font-weight: bold;"><?php echo $fichier["nom"]; ?></span><?php if (!empty($fichier["message"])) echo " - " . $fichier["message"]; ?>
 			</a>
 			
 			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
