@@ -14,31 +14,54 @@ $fichiers = get_fichiers();
 
 if(isset($_FILES['file']))
 {
-	$sha1sum = sha1_file($_FILES['file']['tmp_name']);
-	$extension = "." . end(explode(".", $_FILES['file']['name']));
-	$name = basename($_FILES['file']['name'], $extension);
-	$fullname = $name . $extension;
-	$mimetype = get_mime_type($_FILES['file']['tmp_name']);
-
-	if(in_array($extension, $dangerous_exts))
-		$extension = ".txt";
-
-	if(!move_uploaded_file($_FILES['file']['tmp_name'], $stockage . $sha1sum . $extension))
+	
+	if ($_FILES['file']['error'] === UPLOAD_ERR_OK)
 	{
-		trigger_error("Le fichier " . $fullname . " n'a PAS été uploadé, veuillez réessayer");
+
+		$sha1sum = sha1_file($_FILES['file']['tmp_name']);
+		$lol = explode(".",$_FILES['file']['name']); # PHP, c'est magique !
+		$extension = "." . end($lol);
+		$name = basename($_FILES['file']['name'], $extension);
+		$fullname = $name . $extension;
+		$mimetype = get_mime_type($_FILES['file']['tmp_name']);
+
+		if(in_array($extension, $dangerous_exts))
+			$extension = ".txt";
+
+		if(!move_uploaded_file($_FILES['file']['tmp_name'], $stockage . $sha1sum . $extension))
+		{
+			trigger_error("Le fichier " . $fullname . " n'a PAS été uploadé, veuillez réessayer");
+		}
+
+		array_unshift($fichiers, array(
+			"nom" => $name,
+			"chemin" => $sha1sum . $extension,
+			"type" => $mimetype,
+			"timestamp" => time(),
+			"message" => htmlspecialchars(substr($_POST['message'], 0, 100),ENT_QUOTES, 'UTF-8')
+		));
+
+		file_put_contents('liste.json', json_encode($fichiers));
+	} else {
+		$erreur = $_FILES['file']['error'];
+
+		if ($erreur === UPLOAD_ERR_INI_SIZE || $erreur === UPLOAD_ERR_FORM_SIZE)
+		{
+			trigger_error("Ah bah si on envoi un fichier trop gros, il passe pas.");
+		} elseif ($erreur === UPLOAD_ERR_PARTIAL)
+		{
+			trigger_error("Le fichier a été envoyé, mais pas totalement.");
+		} elseif ($erreur === UPLOAD_ERR_NO_FILE)
+		{
+			trigger_error("Aucun fichier n'a été envoyé… …non rien.");
+		} else 
+		{
+			trigger_error("Il y a une erreur, mais laquelle…, tenez le code: $erreur, regardez dans la doc php si vous voulez :-)");
+		}
 	}
 
-	array_unshift($fichiers, array(
-		"nom" => $name,
-		"chemin" => $sha1sum . $extension,
-		"type" => $mimetype,
-		"timestamp" => time(),
-		"message" => htmlspecialchars(substr($_POST['message'], 0, 100),ENT_QUOTES, UTF-8)
-	));
 
-	file_put_contents('liste.json', json_encode($fichiers));
-
-	if (!is_empty($erreurs))
+	if (is_empty($erreurs))
 	{
 		// Pour ne pas reposter le fichier en actualisant la page
 		header("Location: .");
