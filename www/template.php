@@ -48,7 +48,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 				<?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?>
 			</a>
 			
-			<span class="date"><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></span>
+			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
 			<span class="mimetype"><?php echo $fichier["type"]; ?></span>
 	</li>
 <?php } ?>

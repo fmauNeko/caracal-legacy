@@ -13,4 +13,5 @@ $fichier_liste = 'liste.json';
 # Secondes avant qu'un fichier ne soit plus marqué comme nouveau
 $delai_nouveaute = 1200;
 
+$date_format = "%A %d %B %Y, %T";
 ?>
