@@ -14,12 +14,12 @@
 	<div>
 		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $taille_max_upload; ?>" />
 		<p>
-			<label for="file_input">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
-			<input type="file" name="file" id="file_input" /><br />
+			<label for="file">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
+			<input type="file" name="file" /><br />
 		</p>
 		<p>
-			<label for="message_input">Message:</label><br />
-			<textarea name="message" id="message_input" rows="3" cols="10"></textarea>
+			<label for="message">Message:</label><br />
+			<textarea name="message" ></textarea>
 			<input type="submit" value="Envoyer"/>
 		</p>
 	</div>
@@ -35,14 +35,14 @@
 <?php } } ?>
 	<h2>Liste des fichiers envoyés</h2>
 	<ul id="liste_fichiers">
-<?php foreach($fichiers as $id => $fichier)
+<?php foreach($pagination["liste"] as $id => $fichier)
 {
 $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();	
 ?>
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
 			<a href="<?php echo $stockage , $fichier["chemin"]; ?>">
 				<img src="icons/<?php echo get_icone($fichier["type"]); ?>.png" alt="" />
-				<span style="font-weight: bold;"><?php echo $fichier["nom"]; ?></span><?php if (!empty($fichier["message"])) echo " - " . $fichier["message"]; ?>
+				<?php echo $fichier["nom"]; ?>	<?php echo $fichier["message"]; ?>
 			</a>
 			
 			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
@@ -50,6 +50,39 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 	</li>
 <?php } ?>
 	</ul>
+
+	
+<?php
+
+if (count($pagination["liens_a"]) > 1)
+{
+
+	echo '<p>Pages: ';
+	
+	$it = count($pagination["liens_a"]);
+
+	for ($i = 0; $i < $it; $i++)
+	{
+		$num_page = $pagination["liens_a"][$i];
+		echo "<a href=\"?page=$num_page\">$num_page</a> ";
+	}
+
+	if ($pagination["sautes"])
+	{
+		echo "… ";
+	};
+		
+	$it = count($pagination["liens_b"]);
+
+	for ($i = 0; $i < $it; $i++)
+	{
+		$num_page = $pagination["liens_b"][$i];
+		echo "<a href=\"?page=$num_page\">$num_page</a> ";
+	}
+	echo '</p>';
+
+	}
+?>
 </body>
 </html>
 
