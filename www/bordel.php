@@ -8,7 +8,7 @@ function mon_pager($liste = array(), $page = 0, $nb_par_page = 12, $sauts = 5)
 	# On part du principe qu'en php, tout est référence. Même si c'est faux.
 	$objets = array_slice($liste, $nb_par_page * $page, $nb_par_page);
 
-	$nb_elements = (int) (count($liste) / $nb_par_page);
+	$nb_elements = ceil((count($liste) / $nb_par_page));
 
 	$liens_a = array();
 	$liens_b = array();
