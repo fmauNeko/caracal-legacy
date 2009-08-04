@@ -86,8 +86,17 @@ if (isset($_GET["page"]))
 	}
 }
 
-$pagination = mon_pager($fichiers, $page, $nb_elements_par_page, 5);
+$pagination = mon_pager(count($fichiers), $page, $nb_elements_par_page, 5);
+$fichiers_vus = array_slice($fichiers, $nb_elements_par_page * $page, $nb_elements_par_page);
 
+//print_r($pagination);
+//print_r(mon_pager(12, 0, 12, 2));
+//print_r(mon_pager(24, 1, 12, 2));
+//print_r(mon_pager(144, 10, 12, 2));
+//print_r(mon_pager(144, 11, 12, 2));
+//print_r(mon_pager(144, 5, 12, 2));
+//print_r(mon_pager(144, 12,12,  2));
+//print_r(mon_pager(144, 15,12,  2));
 include("template.php");
 
 ?>

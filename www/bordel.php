@@ -3,50 +3,60 @@
 # Ce n'est pas que l'on n'aime pas la programmation orienté objet, on adore ruby et C++, mais la programmation orienté objet pour un petit site est selon nous une perte de temps.
 
 # Pageur fait maison car celui de pear est vilain (très vilain)
-function mon_pager($liste = array(), $page = 0, $nb_par_page = 12, $sauts = 5)
+function mon_pager($nb_elements = 0, $page = 0, $nb_par_page = 12, $sauts = 2)
 {
-	# On part du principe qu'en php, tout est référence. Même si c'est faux.
-	$objets = array_slice($liste, $nb_par_page * $page, $nb_par_page);
-
-	$nb_elements = ceil((count($liste) / $nb_par_page));
-
-	$liens_a = array();
-	$liens_b = array();
-
-	# PHP ne compile pas en optimisant, c'est beau <3
-	$it = min($sauts, $nb_elements);
-
-	for ($i = 0; $i < $it; $i++)
-	{
-		$liens_a[] = 	$i;
-	}
-
-	$dernier = end($liens_a) + 1;
+	$directions = array();
 	
-	$sautes = false;
+	$nb_pages = ceil($nb_elements / $nb_par_page);
 
-	$st = max($dernier, $nb_elements - $sauts);
-
-	if ($st < $nb_elements)
+	if ($nb_pages === 1)
 	{
-
-		if ($st >= ($dernier+1))
-		{
-			$sautes = true;
-		}
-		
-		$liens_b[] = 	$st;
-
-		for ($i = $st + 1; $i < $nb_elements; $i++)
-		{
-			$liens_b[] = 	$i;
-		}
+		return false;
 	}
 
-	return array("liste"	=> $objets,
-				 "sautes"	=> $sautes,
-				 "liens_a"	=> $liens_a,
-				 "liens_b"	=> $liens_b
+	if ($page >= $nb_pages)
+	{
+		$page = 0;
+	}
+
+	if ($page === 0)
+	{
+		$directions['precedent'] = false;
+	} else {
+		$directions['precedent'] = $page - 1 ;
+	}
+
+	if ($page < $nb_pages-1)
+	{
+		$directions['suivant'] = $page + 1;
+	} else {
+		$directions['suivant'] = false;
+	}
+
+	$pages	= array();
+
+	$fin	= min($sauts, $page - $sauts + 1);
+	$fin	= ($fin < 0) ? 0 : $fin;		
+	for ($i = 0; $i < $fin; $i++) {
+		$pages[] = $i;	
+	}
+
+	$debut	= max($fin,	$page - $sauts + 1);
+	$fin	= min($nb_pages,	$page + $sauts);
+
+	for ($i = $debut; $i < $fin; $i++) {
+		$pages[] = $i;	
+	}
+
+
+	$debut = max($fin + 1,	$nb_pages - $sauts + 1);
+	 
+	for ($i = $debut; $i <= $nb_pages; $i++) {
+		$pages[] = $i;	
+	}
+	
+	return array("pages"		=> $pages,
+				 "directions"	=> $directions
 				);
 }
 

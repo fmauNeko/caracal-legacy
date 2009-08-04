@@ -28,14 +28,14 @@
 {
 ?>
 	<h2>Erreurs</h2>
-<?php foreach($pagination["liste"] as $id => $erreur)
+<?php foreach($erreurs as $id => $erreur)
 {
 ?>
 	<p class="erreur"><?php echo $erreur; ?></p>
 <?php } } ?>
 	<h2>Liste des fichiers envoyés</h2>
 	<ul id="liste_fichiers">
-<?php foreach($pagination["liste"] as $id => $fichier)
+<?php foreach($fichiers_vus as $id => $fichier)
 {
 $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();	
 ?>
@@ -54,30 +54,40 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 	
 <?php
 
-if (count($pagination["liens_a"]) > 1)
+if ($pagination)
 {
 
-	echo '<p class="pagination">Pages: ';
-	
-	$it = count($pagination["liens_a"]);
+	echo '<p id="pagination">Pages:<br/>';
 
-	for ($i = 0; $i < $it; $i++)
+	$direction = $pagination['directions']['precedent'];
+	if ($direction !== false)
 	{
-		$num_page = $pagination["liens_a"][$i];
-		echo "<a href=\"?page=$num_page\">$num_page</a> ";
+		echo "<a href=\"?page=$direction#liste_fichiers\">Précedent</a> ";
 	}
 
-	if ($pagination["sautes"])
-	{
-		echo "… ";
-	};
-		
-	$it = count($pagination["liens_b"]);
+	$koin = -1;
 
-	for ($i = 0; $i < $it; $i++)
+	foreach ($pagination['pages'] as $id => $pagin)
 	{
-		$num_page = $pagination["liens_b"][$i];
-		echo "<a href=\"?page=$num_page\">$num_page</a> ";
+		if ($koin !== $pagin - 1)
+		{
+			echo '…';
+		}
+
+		if ($pagin === $page)
+		{
+			echo "<strong><a href=\"?page=$pagin#liste_fichiers\">$pagin</a></strong> ";
+		} else {
+			echo "<a href=\"?page=$pagin#liste_fichiers\">$pagin</a> ";
+		}
+
+		$koin = $pagin;
+	}
+
+	$direction = $pagination['directions']['suivant'];
+	if ($direction !== false)
+	{
+		echo "<a href=\"?page=$direction#liste_fichiers\">Suivant</a> ";
 	}
 	echo '</p>';
 
