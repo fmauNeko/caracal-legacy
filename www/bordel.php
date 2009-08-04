@@ -9,7 +9,7 @@ function mon_pager($nb_elements = 0, $page = 0, $nb_par_page = 12, $sauts = 2)
 	
 	$nb_pages = ceil($nb_elements / $nb_par_page);
 
-	if ($nb_pages === 1)
+	if ($nb_pages <= 1)
 	{
 		return false;
 	}
