@@ -24,4 +24,7 @@ $date_format = "%A %d %B %Y, %T";
 
 # Liste des extensions à modifier pour éviter de compromettre le serveur
 $dangerous_exts = array(".php", ".cgi", ".fcgi", ".rb", ".py", ".pl", ".sh", ".php3", ".php4", ".pht", ".phtml", ".csh");
+
+# Message en bas de la page, pensez à changer la localisation de la plate forme
+$disclamer = "L'équipe de Caracal et l'hébergeur de ce site ne sont pas responsables des fichiers hébergés. Cependant, si certains sont illégaux dans le pays où se trouve le serveur, merci de prévenir la personne adéquate. Mais le serveur étant hébergé sur une ancienne plate-forme pétrolière au large de la Corse, on s'en fiche en fait…";
 ?>

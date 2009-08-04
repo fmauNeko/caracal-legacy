@@ -93,6 +93,11 @@ if ($pagination)
 
 	}
 ?>
+
+<p id="footer">
+<?php echo $disclamer; ?>
+</p>
+
 </body>
 </html>
 
