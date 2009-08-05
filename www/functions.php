@@ -164,7 +164,7 @@ function get_fichiers() {
 /**
  * Calcule les nouvelles dimensions de l'image selon les contraintes
  */
-function scalePhoto($x,$y,$cx,$cy)
+function scaleImage($x,$y,$cx,$cy)
 {
 	list($nx,$ny)=array($x,$y);
 
@@ -187,19 +187,21 @@ function scalePhoto($x,$y,$cx,$cy)
 /**
  * Redimensionne l'image
  */
-function resizePhoto($sha1sum,$ext,$maxX,$maxY)
+function resizeImage($sha1sum,$ext,$maxX,$maxY)
 {
 	try {
-		$thumb = new Imagick($stockage."/".$sha1sum.".".$ext);
+		global $stockage;
+
+		$thumb = new Imagick($stockage.$sha1sum.".".$ext);
 	
-		list($newX,$newY)=scalePhoto(
+		list($newX,$newY)=scaleImage(
 			$thumb->getImageWidth(),
 			$thumb->getImageHeight(),
 			$maxX,
 			$maxY);
 	
 		$thumb->thumbnailImage($newX,$newY);
-		$thumb->writeImage($stockage."/thumbs/".$sha1sum."_".$maxX."_".$maxY.".".$ext);
+		$thumb->writeImage($stockage."thumbs/".$sha1sum."_".$maxX."_".$maxY.".".$ext);
 		
 		return true;
 	} catch (Exception $e){
@@ -214,14 +216,16 @@ function resizePhoto($sha1sum,$ext,$maxX,$maxY)
  */
 function getThumbLink($sha1sum,$ext,$x,$y)
 {
-	if(!file_exists($stockage."/thumbs/".$sha1sum."_".$x."_".$y.".".$ext))
+	global $stockage;
+
+	if(!file_exists($stockage."thumbs/".$sha1sum."_".$x."_".$y.".".$ext))
 	{
-		if (!resizePhoto($sha1sum,$ext,$x,$y)){
+		if (!resizeImage($sha1sum,$ext,$x,$y)){
 			return "templates/img/image-erreur.png";
 		}
 	}
 	
-	return ($stockage."/thumbs/".$sha1sum."_".$x."_".$y.".".$ext);
+	return ($stockage."thumbs/".$sha1sum."_".$x."_".$y.".".$ext);
 }
 
 /**

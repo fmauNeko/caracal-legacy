@@ -47,11 +47,11 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 			
 			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
 			<span class="mimetype"><?php echo $fichier["type"]; ?></span>
-<?php if (strpos($mime, "image") !== FALSE)
+<?php if (strpos($fichier["type"], "image") !== FALSE)
 { 
 	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
 ?>
-			<span class="thumbnail"><?php echo getTihumbLink($sha1sum,$ext,800,600); ?></span>
+			<span class="thumbnail"><img src="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" alt="<?php echo $sha1sum."_800_600"; ?>" /></span>
 <?php } ?>
 	</li>
 <?php } ?>
