@@ -1,7 +1,7 @@
 <?php
 
 include("config.php");
-include("bordel.php");
+include("functions.php");
 
 $fichiers = get_fichiers();
 
