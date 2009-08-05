@@ -125,7 +125,12 @@ function verifier_droits()
 	{
 		trigger_error("Impossible d'écrire dans le dossier des fichiers");
 	}
-	
+
+	if (!is_writable('files/thumbs/'))
+	{
+		trigger_error("Impossible d'écrire dans le dossier des miniatures");
+	}
+
 	if (file_exists('liste.json') && !is_writable('liste.json'))
 	{
 		trigger_error("Impossible d'écrire dans la liste des fichiers");
