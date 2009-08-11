@@ -14,7 +14,7 @@
 	<div>
 		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $taille_max_upload; ?>" />
 		<p>
-			<label for="file_input">Fichier à envoyer (taille maximale <?php echo $taille_max_upload/1048576; ?> Mio):</label><br />
+			<label for="file_input">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
 			<input type="file" name="file" id="file_input" /><br />
 		</p>
 		<p>
@@ -47,12 +47,6 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 			
 			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
 			<span class="mimetype"><?php echo $fichier["type"]; ?></span>
-<?php if (strpos($fichier["type"], "image") !== FALSE)
-{ 
-	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
-?>
-			<span class="thumbnail"><img src="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" alt="<?php echo $sha1sum."_800_600"; ?>" /></span>
-<?php } ?>
 	</li>
 <?php } ?>
 	</ul>
