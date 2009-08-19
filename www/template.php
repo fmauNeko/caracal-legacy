@@ -8,7 +8,7 @@
 	<!--[if lte IE 6]>
 	<link href="design/highslide-ie6.css" media="screen" rel="Stylesheet" type="text/css" />
 	<![endif]-->
-	<script type="text/javascript" src="js/highslide.js"/>
+	<script type="text/javascript" src="js/highslide.js"></script>
 	<link rel="alternate" title="Flux rss" type="application/rss+xml" href="rss.php" />
 	<title><?php echo $titre_site; ?></title>
 </head>
@@ -56,7 +56,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 { 
 	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
 ?>
-			<span class="thumbnail"><img src="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" alt="<?php echo $sha1sum."_800_600"; ?>" /></span>
+			<span class="thumbnail"><a href="thumbnail.php?sha1sum=<?php echo $sha1sum; ?>&ext=<?php echo $ext; ?>" rel="highslide-ajax">Aperçu</a></span>
 <?php } ?>
 	</li>
 <?php } ?>
