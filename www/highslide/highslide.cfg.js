@@ -1,4 +1,3 @@
-hs.outlineType = 'rounded-black';
-hs.wrapperClassName = 'borderless floating-caption';
+hs.outlineType = 'glossy-dark';
 hs.dimmingOpacity = 0.75;
-hs.align = 'center';
+hs.showCredits = false;
