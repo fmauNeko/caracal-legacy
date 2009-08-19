@@ -4,6 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="-//W3C//DTD XHTML 1.1//EN" xml:lang="fr_FR" xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
 <head>
 	<link href="design/style.css" media="screen" rel="Stylesheet" type="text/css" />
+	<link href="design/highslide.css" media="screen" rel="Stylesheet" type="text/css" />
+	<!--[if lte IE 6]>
+	<link href="design/highslide-ie6.css" media="screen" rel="Stylesheet" type="text/css" />
+	<![endif]-->
+	<script type="text/javascript" src="js/highslide.js"/>
 	<link rel="alternate" title="Flux rss" type="application/rss+xml" href="rss.php" />
 	<title><?php echo $titre_site; ?></title>
 </head>
