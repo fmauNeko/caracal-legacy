@@ -56,7 +56,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 { 
 	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
 ?>
-			<span class="thumbnail"><a href="thumbnail.php?sha1sum=<?php echo $sha1sum; ?>&ext=<?php echo $ext; ?>" rel="highslide-ajax">Aperçu</a></span>
+			<span class="thumbnail"><a href="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" class="highslide" rel="highslide">Aperçu</a></span>
 <?php } ?>
 	</li>
 <?php } ?>
