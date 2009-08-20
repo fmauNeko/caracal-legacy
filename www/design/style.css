@@ -160,6 +160,17 @@ right:5px;
 top:5px;
 }
 
+li span.thumbnail
+{
+display:block;
+position:absolute;
+height:20px;
+line-height:20px;
+font-style:italic;
+right:300px;
+bottom:5px;
+}
+
 li span.mimetype
 {
 display:block;

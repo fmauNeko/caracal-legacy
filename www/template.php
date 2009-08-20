@@ -4,6 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="-//W3C//DTD XHTML 1.1//EN" xml:lang="fr_FR" xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd">
 <head>
 	<link href="design/style.css" media="screen" rel="Stylesheet" type="text/css" />
+	<link href="highslide/highslide.css" media="screen" rel="Stylesheet" type="text/css" />
+	<!--[if lte IE 6]>
+	<link href="highslide/highslide-ie6.css" media="screen" rel="Stylesheet" type="text/css" />
+	<![endif]-->
+	<script type="text/javascript" src="highslide/highslide.js"></script>
+	<script type="text/javascript" src="highslide/highslide.cfg.js"></script>
 	<link rel="alternate" title="Flux rss" type="application/rss+xml" href="rss.php" />
 	<title><?php echo $titre_site; ?></title>
 </head>
@@ -14,7 +20,7 @@
 	<div>
 		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $taille_max_upload; ?>" />
 		<p>
-			<label for="file_input">Fichier à envoyer (taille maximale <?php echo	$taille_max_upload/1048576; ?> Mio):</label><br />
+			<label for="file_input">Fichier à envoyer (taille maximale <?php echo $taille_max_upload/1048576; ?> Mio):</label><br />
 			<input type="file" name="file" id="file_input" /><br />
 		</p>
 		<p>
@@ -47,6 +53,12 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 			
 			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
 			<span class="mimetype"><?php echo $fichier["type"]; ?></span>
+<?php if (strpos($fichier["type"], "image") !== FALSE)
+{ 
+	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
+?>
+			<span class="thumbnail"><a href="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" class="highslide" rel="highslide">Aperçu</a></span>
+<?php } ?>
 	</li>
 <?php } ?>
 	</ul>
