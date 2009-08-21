@@ -1,6 +1,7 @@
 <?php
 # Toutes les fonctions en bordel.
 # Ce n'est pas que l'on n'aime pas la programmation orienté objet, on adore ruby et C++, mais la programmation orienté objet pour un petit site est selon nous une perte de temps.
+# Et la syntaxe PHP pour l'OO est particulièrement horrible.
 
 # Pageur fait maison car celui de pear est vilain (très vilain)
 function mon_pager($nb_elements = 0, $page = 0, $nb_par_page = 12, $sauts = 2)
@@ -124,7 +125,12 @@ function verifier_droits()
 	{
 		trigger_error("Impossible d'écrire dans le dossier des fichiers");
 	}
-	
+
+	if (!is_writable('files/thumbs/'))
+	{
+		trigger_error("Impossible d'écrire dans le dossier des miniatures");
+	}
+
 	if (file_exists('liste.json') && !is_writable('liste.json'))
 	{
 		trigger_error("Impossible d'écrire dans la liste des fichiers");
@@ -158,6 +164,73 @@ function get_fichiers() {
 	$fichiers = json_decode($liste, true); 
 
 	return $fichiers;
+}
+
+/**
+ * Calcule les nouvelles dimensions de l'image selon les contraintes
+ */
+function scaleImage($x,$y,$cx,$cy)
+{
+	list($nx,$ny)=array($x,$y);
+
+	if ($x>=$cx || $y>=$cx) 
+	{
+
+		if ($x>0) $rx=$cx/$x;
+		if ($y>0) $ry=$cy/$y;
+
+		if ($rx < $ry) $r = $rx;
+		else $r = $ry;
+
+		$nx=intval($x*$r);
+		$ny=intval($y*$r);
+	}
+
+	return array($nx,$ny);
+}
+
+/**
+ * Redimensionne l'image
+ */
+function resizeImage($sha1sum,$ext,$maxX,$maxY)
+{
+	try {
+		global $stockage;
+
+		$thumb = new Imagick($stockage.$sha1sum.".".$ext);
+	
+		list($newX,$newY)=scaleImage(
+			$thumb->getImageWidth(),
+			$thumb->getImageHeight(),
+			$maxX,
+			$maxY);
+	
+		$thumb->thumbnailImage($newX,$newY);
+		$thumb->writeImage($stockage."thumbs/".$sha1sum."_".$maxX."_".$maxY.".".$ext);
+		
+		return true;
+	} catch (Exception $e){
+		echo $e;
+		return false;
+	}
+		
+}
+
+/**
+ * Retourne le lien vers une miniature, et la génère si besoin
+ */
+function getThumbLink($sha1sum,$ext,$x,$y)
+{
+	global $stockage;
+
+	if(!file_exists($stockage."thumbs/".$sha1sum."_".$x."_".$y.".".$ext))
+	{
+		if (!resizeImage($sha1sum,$ext,$x,$y)){
+			return "templates/img/image-erreur.png";
+		}
+	}
+	
+	return ($stockage."thumbs/".$sha1sum."_".$x."_".$y.".".$ext);
 }
 
 /**
