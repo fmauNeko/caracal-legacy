@@ -74,10 +74,12 @@ if ($pagination)
 	$direction = $pagination['directions']['precedent'];
 	if ($direction !== false)
 	{
+		++$direction;
 		echo "<a href=\"?page=$direction#liste_fichiers\">Précedent</a> ";
 	}
 
 	$koin = -1;
+	++$page;
 
 	foreach ($pagination['pages'] as $id => $pagin)
 	{
@@ -86,12 +88,16 @@ if ($pagination)
 			echo '…';
 		}
 
+		++$pagin;
+
 		if ($pagin === $page)
 		{
 			echo "<strong><a href=\"?page=$pagin#liste_fichiers\">$pagin</a></strong> ";
 		} else {
 			echo "<a href=\"?page=$pagin#liste_fichiers\">$pagin</a> ";
 		}
+		
+		--$pagin;
 
 		$koin = $pagin;
 	}
@@ -99,6 +105,7 @@ if ($pagination)
 	$direction = $pagination['directions']['suivant'];
 	if ($direction !== false)
 	{
+		++$direction;
 		echo "<a href=\"?page=$direction#liste_fichiers\">Suivant</a> ";
 	}
 	echo '</p>';
