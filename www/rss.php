@@ -25,7 +25,7 @@ for ($i = 0; $i < $it; $i++)
 	$url_icons	= 	$url_site . "icons/" . get_icone($fichier["type"]) . ".png";
 ?>
 		<item>
-			<title><?php echo $fichier["nom"]; ?></title>
+			<title><?php echo $fichier["nom"]; ?><?php if ($fichier["message"] !== "") { echo ' | ', $fichier["message"]; }?></title>
 			<pubDate><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></pubDate>
 			<description>
 			<?php echo $fichier["message"]; ?>	
