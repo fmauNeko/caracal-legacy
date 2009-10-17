@@ -65,14 +65,18 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 
 if ($pagination)
 {
-
+	function afficherPage($num_page, $texte)
+	{
+		echo "<a href=\"?page=$num_page#liste_fichiers\">$texte</a> ";
+	}
+	
 	echo '<p id="pagination">Pages:<br/>';
 
 	$direction = $pagination['directions']['precedent'];
 	if ($direction !== false)
 	{
 		++$direction;
-		echo "<a href=\"?page=$direction#liste_fichiers\">Précedent</a> ";
+		afficherPage($direction, 'Précedent');
 	}
 
 	$koin = -1;
@@ -89,9 +93,11 @@ if ($pagination)
 
 		if ($pagin === $page)
 		{
-			echo "<strong><a href=\"?page=$pagin#liste_fichiers\">$pagin</a></strong> ";
+			echo "<strong>";
+			afficherPage($pagin, $pagin);
+			echo "</strong>";
 		} else {
-			echo "<a href=\"?page=$pagin#liste_fichiers\">$pagin</a> ";
+			afficherPage($pagin, $pagin);
 		}
 		
 		--$pagin;
@@ -103,8 +109,9 @@ if ($pagination)
 	if ($direction !== false)
 	{
 		++$direction;
-		echo "<a href=\"?page=$direction#liste_fichiers\">Suivant</a> ";
+		afficherPage($direction, 'Suivant');
 	}
+	
 	echo '</p>';
 
 	}
@@ -116,4 +123,3 @@ if ($pagination)
 
 </body>
 </html>
-

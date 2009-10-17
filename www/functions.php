@@ -52,7 +52,7 @@ function mon_pager($nb_elements = 0, $page = 0, $nb_par_page = 12, $sauts = 2)
 
 	$debut = max($fin + 1,	$nb_pages - $sauts + 1);
 	 
-	for ($i = $debut; $i <= $nb_pages; $i++) {
+	for ($i = $debut; $i < $nb_pages; $i++) {
 		$pages[] = $i;	
 	}
 	
