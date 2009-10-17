@@ -96,7 +96,7 @@ line-height:52px;
 position:relative;
 }
 
-li img
+li img.icone
 {
 position:absolute;
 top:8px;
@@ -160,15 +160,22 @@ right:5px;
 top:5px;
 }
 
-li span.thumbnail
+li div.thumbnail
 {
-display:block;
 position:absolute;
-height:20px;
-line-height:20px;
+height:58px;
+line-height:58px;
 font-style:italic;
-right:300px;
-bottom:5px;
+right:260px;
+bottom:0px;
+}
+
+li div.thumbnail a.highslide img
+{
+border-top:none;
+border-left:none;
+border-bottom:2px solid #111;
+border-right:2px solid #111;
 }
 
 li span.mimetype

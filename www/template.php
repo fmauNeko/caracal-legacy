@@ -44,7 +44,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 ?>
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
 			<a href="<?php echo $stockage , $fichier["chemin"]; ?>">
-				<img src="icons/<?php echo get_icone($fichier["type"]); ?>.png" alt="" />
+				<img src="icons/<?php echo get_icone($fichier["type"]); ?>.png" alt="" class="icone" />
 				<span style="font-weight: bold;"><?php echo $fichier["nom"]; ?></span><?php if (!empty($fichier["message"])) echo " - " . $fichier["message"]; ?>
 			</a>
 			
@@ -54,7 +54,7 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 { 
 	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
 ?>
-			<span class="thumbnail"><a href="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" class="highslide" rel="highslide">Aperçu</a></span>
+			<div class="thumbnail"><a href="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" class="highslide" rel="highslide"><img src="<?php echo getThumbLink($sha1sum,$ext,128,50); ?>" alt="Aperçu" /></a></div>
 <?php } ?>
 	</li>
 <?php } ?>
