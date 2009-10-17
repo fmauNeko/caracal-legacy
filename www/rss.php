@@ -25,14 +25,34 @@ for ($i = 0; $i < $it; $i++)
 	$url_icons	= 	$url_site . "icons/" . get_icone($fichier["type"]) . ".png";
 ?>
 		<item>
-			<title><?php echo $fichier["nom"]; ?><?php if ($fichier["message"] !== "") { echo ' | ', $fichier["message"]; }?></title>
+			<title><?php
+if ($fichier["message"] !== "")
+{
+	echo $fichier["message"], ' | ';
+}
+
+echo $fichier["nom"], ' | ', $fichier["type"]
+?></title>
 			<pubDate><?php echo date(DATE_RSS, $fichier["timestamp"]); ?></pubDate>
 			<description>
-			<?php echo $fichier["message"]; ?>	
-			&lt;br/&gt;
 			&lt;a href="<?php echo $url_lien;?>"&gt;
 				&lt;img src="<?php echo $url_icons;?>" alt="<?php echo $fichier["chemin"];?>" /&gt;
-				<?php echo $fichier["nom"]; ?>
+<?php
+if ($fichier["message"] !== "")
+{
+	echo $fichier["message"], ' | ';
+}
+
+echo $fichier["nom"], ' | ', $fichier["type"];
+?>
+&lt;br/&gt;
+<?php if (strpos($fichier["type"], "image") !== FALSE)
+{ 
+	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
+?>
+				&lt;br/&gt;
+				&lt;img src="<?php echo $url_site, getThumbLink($sha1sum,$ext,800,600); ?>" alt="Aperçu" /&gt;
+<?php } ?>
 			&lt;/a&gt;
 			</description>
 			<link><?php echo $url; ?></link>
