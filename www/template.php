@@ -52,8 +52,28 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 			<span class="mimetype"><?php echo $fichier["type"]; ?></span>
 <?php
 $taille = nb_bites_aux_kibis($fichier["taille"]);
+$classe = $taille[2];
+
+if ($classe === 1 && $taille[0] >= 512)
+	$classe .='_512';
+
+if ($classe === 1 && $taille[0] >= 128)
+	$classe .='_128';
+
+elseif ($classe === 2 && $taille[0] >= 680)
+	$classe .='_680';
+
+elseif ($classe === 2 && $taille[0] >= 96)
+	$classe .='_96';
+
+elseif ($classe === 2 && $taille[0] >= 18)
+	$classe .='_18';
+
+elseif ($classe === 2 && $taille[0] >= 3)
+	$classe .='_3';
+
 ?>
-			<span class="taille taille_<?php echo $taille[1], '">', sprintf("%0.2f ", $taille[0]), $taille[1] ?></span>
+			<span class="taille taille_<?php echo $classe, '">', sprintf("%0.2f ", $taille[0]), $taille[1] ?></span>
 <?php if (strpos($fichier["type"], "image") !== FALSE)
 { 
 	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);

@@ -291,7 +291,7 @@ function nb_bites_aux_kibis($nb_bites)
 	// Conversion en valeur à virgule
 	$nb_kibis = $nb_bites/pow(1024, $u);
 
-	return array($nb_kibis, $unites[$u]);
+	return array($nb_kibis, $unites[$u], $u);
 
 }
 ?>

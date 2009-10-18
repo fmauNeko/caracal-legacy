@@ -108,11 +108,6 @@ li a
 display:block;
 }
 
-/*li a:before*/
-/*{*/
-/*content:url(fichier.png);*/
-/*}*/
-
 li.rouge 
 {
 background-color:#222;
@@ -163,8 +158,8 @@ top:5px;
 li div.thumbnail
 {
 position:absolute;
-height:58px;
-line-height:58px;
+height:56px;
+line-height:56px;
 font-style:italic;
 right:260px;
 bottom:0px;
@@ -174,8 +169,8 @@ li div.thumbnail a.highslide img
 {
 border-top:none;
 border-left:none;
-border-bottom:2px solid #111;
-border-right:2px solid #111;
+border-bottom:1px solid #050505;
+border-right:1px solid #050505;
 }
 
 li span.mimetype
@@ -188,6 +183,28 @@ font-style:italic;
 right:5px;
 bottom:5px;
 }
+
+li span.taille
+{
+display:block;
+position:absolute;
+height:20px;
+line-height:20px;
+font-style:italic;
+right:5px;
+bottom:21px;
+color:#FF0000;
+}
+
+li span.taille_2_680	{color:#FF0033;}
+li span.taille_2_96		{color:#FF0066;}
+li span.taille_2_18		{color:#FF3300;}
+li span.taille_2_3		{color:#FF2E0A;}
+li span.taille_2		{color:#FF4F0C;}
+li span.taille_1_512	{color:#FF920F;}
+li span.taille_1_128	{color:#FFC013;}
+li span.taille_1		{color:#FFFF11;}
+li span.taille_0		{color:#FFFFEE;}
 
 #pagination
 {
