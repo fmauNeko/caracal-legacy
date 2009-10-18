@@ -284,9 +284,9 @@ function nb_bites_aux_kibis($nb_bites)
 	// On regarde quelle unité correspond
 	$u = (int)log((double)$nb_bites, 1024);
 
-	// Si l'unité est vraiment très grande, on met tout ça en Yobioctets (on prévoit vraiment le coup là)
+	// Si l'unité est inconnue, tout en bits
 	if (isset($unites[$u]) === false)
-		$u = count($unites)-1;
+		$u = 0;
 
 	// Conversion en valeur à virgule
 	$nb_kibis = $nb_bites/pow(1024, $u);
