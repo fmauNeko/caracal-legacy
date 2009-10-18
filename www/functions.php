@@ -265,4 +265,33 @@ function jyraphe_ini_to_bytes($value) {
 function jyraphe_get_max_upload_size() {
   return min(jyraphe_ini_to_bytes(ini_get('post_max_size')), jyraphe_ini_to_bytes(ini_get('upload_max_filesize')));
 }
+
+/* Fonction qui converti en unités standarts la taille d'un fichier */
+function nb_bites_aux_kibis($nb_bites)
+{
+	static $unites = array (
+		'o',
+		'Kio',
+		'Mio',
+		'Gio',
+		'Tio',
+		'Pio',
+		'Eio',
+		'Zio',
+		'Yio'
+	); // On a le temps de voir venir comme ça
+
+	// On regarde quelle unité correspond
+	$u = (int)log((double)$nb_bites, 1024);
+
+	// Si l'unité est vraiment très grande, on met tout ça en Yobioctets (on prévoit vraiment le coup là)
+	if (isset($unites[$u]) === false)
+		$u = count($unites)-1;
+
+	// Conversion en valeur à virgule
+	$nb_kibis = $nb_bites/pow(1024, $u);
+
+	return array($nb_kibis, $unites[$u]);
+
+}
 ?>

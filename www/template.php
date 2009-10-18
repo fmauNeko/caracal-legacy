@@ -45,22 +45,29 @@ $nouveau = $fichier["timestamp"] + $delai_nouveaute > time();
 		<li class="<?php if($nouveau) echo 'nouveau'; elseif ($id % 2 == 0) echo 'rouge'; else echo 'noir';?>" >
 			<a href="<?php echo $stockage , $fichier["chemin"]; ?>">
 				<img src="icons/<?php echo get_icone($fichier["type"]); ?>.png" alt="" class="icone" />
-				<span style="font-weight: bold;"><?php echo $fichier["nom"]; ?></span><?php if (!empty($fichier["message"])) echo " - " . $fichier["message"]; ?>
+				<strong><?php echo $fichier["nom"]; ?></strong><?php if (!empty($fichier["message"])) echo " - " . $fichier["message"]; ?>
+
 			</a>
-			
 			<span class="date"><?php echo strftime($date_format, $fichier["timestamp"]); ?></span>
 			<span class="mimetype"><?php echo $fichier["type"]; ?></span>
+<?php
+$taille = nb_bites_aux_kibis($fichier["taille"]);
+?>
+			<span class="taille taille_<?php echo $taille[1], '">', sprintf("%0.2f ", $taille[0]), $taille[1] ?></span>
 <?php if (strpos($fichier["type"], "image") !== FALSE)
 { 
 	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
 ?>
-			<div class="thumbnail"><a href="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" class="highslide" rel="highslide"><img src="<?php echo getThumbLink($sha1sum,$ext,128,50); ?>" alt="Aperçu" /></a></div>
+			<div class="thumbnail">
+				<a href="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" class="highslide" rel="highslide">
+					<img src="<?php echo getThumbLink($sha1sum,$ext,128,50); ?>" alt="Aperçu" />
+				</a>
+			</div>
 <?php } ?>
-	</li>
+		</li>
 <?php } ?>
 	</ul>
 
-	
 <?php
 
 if ($pagination)
@@ -70,7 +77,7 @@ if ($pagination)
 		echo "<a href=\"?page=$num_page#liste_fichiers\">$texte</a> ";
 	}
 	
-	echo '<p id="pagination">Pages:<br/>';
+	echo "<p id=\"pagination\">Pages:<br/>\n";
 
 	$direction = $pagination['directions']['precedent'];
 	if ($direction !== false)
@@ -112,13 +119,14 @@ if ($pagination)
 		afficherPage($direction, 'Suivant');
 	}
 	
-	echo '</p>';
+	echo "\n</p>\n";
 
 	}
 ?>
 
 <p id="footer">
 <?php echo $disclamer; ?>
+
 </p>
 
 </body>
