@@ -42,12 +42,6 @@ if(isset($_FILES['file']))
 			"taille"	=> $_FILES['file']['size']
 		));
 
-		/* Le but est de mettre à jour la liste car une version de contient pas la taille du fichier
-		for ($i = 0; $i < count($fichiers); ++$i)
-		{
-			$fichiers[$i]["taille"] = filesize($stockage.$fichiers[$i]["chemin"]);
-		}*/
-
 		file_put_contents('liste.json', json_encode($fichiers));
 	} else {
 		$erreur = $_FILES['file']['error'];
