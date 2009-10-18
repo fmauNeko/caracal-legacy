@@ -34,12 +34,19 @@ if(isset($_FILES['file']))
 		}
 
 		array_unshift($fichiers, array(
-			"nom" => $name,
-			"chemin" => $sha1sum . $extension,
-			"type" => $mimetype,
-			"timestamp" => time(),
-			"message" => htmlspecialchars(substr($_POST['message'], 0, 100),ENT_QUOTES, 'UTF-8')
+			"nom"		=> $name,
+			"chemin"	=> $sha1sum . $extension,
+			"type"		=> $mimetype,
+			"timestamp"	=> time(),
+			"message"	=> htmlspecialchars(substr($_POST['message'], 0, 100),ENT_QUOTES, 'UTF-8'),
+			"taille"	=> $_FILES['file']['size']
 		));
+
+		/* Le but est de mettre à jour la liste car une version de contient pas la taille du fichier
+		for ($i = 0; $i < count($fichiers); ++$i)
+		{
+			$fichiers[$i]["taille"] = filesize($stockage.$fichiers[$i]["chemin"]);
+		}*/
 
 		file_put_contents('liste.json', json_encode($fichiers));
 	} else {
