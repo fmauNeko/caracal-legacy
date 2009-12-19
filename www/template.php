@@ -8,6 +8,8 @@
 	<script type="text/javascript" src="highslide/highslide.js"></script>
 	<script type="text/javascript" src="highslide/highslide.cfg.js"></script>
 	<link rel="alternate" title="Flux rss" type="application/rss+xml" href="rss.php" />
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
 	<title><?php echo $titre_site; ?></title>
 </head>
 <body>
