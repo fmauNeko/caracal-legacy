@@ -92,8 +92,11 @@ function get_mime_type($filename)
 		$finfo = finfo_open(FILEINFO_MIME, "magic.mime");
 		list($mimetype, $encoding) = explode("; charset=", finfo_file($finfo, $filename));
 		finfo_close($finfo);
-	} else {
+	} else if (function_exists('mime_content_type'))
+	{
 		$mimetype = mime_content_type($filename);
+	} else {
+		$mimetype = "unknown";
 	}
 
 	return $mimetype;
