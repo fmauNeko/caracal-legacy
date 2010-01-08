@@ -79,13 +79,18 @@ elseif ($classe === 2 && $taille[0] >= 3)
 <?php if (strpos($fichier["type"], "image") !== FALSE)
 { 
 	list($sha1sum,$ext) = explode(".", $fichier["chemin"]);
+       	$grosse = getThumbLink($sha1sum,$ext,800,600);
+	$petite = getThumbLink($sha1sum,$ext,128,50);
+	
+	if ($grosse && $petite)
+	{
 ?>
 			<div class="thumbnail">
-				<a href="<?php echo getThumbLink($sha1sum,$ext,800,600); ?>" class="highslide" rel="highslide">
-					<img src="<?php echo getThumbLink($sha1sum,$ext,128,50); ?>" alt="Aperçu" />
+				<a href="<?php echo $grosse; ?>" class="highslide" rel="highslide">
+					<img src="<?php echo $petite ?>" alt="Aperçu" />
 				</a>
 			</div>
-<?php } ?>
+<?php } } ?>
 		</li>
 <?php } ?>
 	</ul>

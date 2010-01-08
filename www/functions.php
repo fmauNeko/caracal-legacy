@@ -96,7 +96,7 @@ function get_mime_type($filename)
 	{
 		$mimetype = mime_content_type($filename);
 	} else {
-		$mimetype = "unknown";
+		$mimetype = false;
 	}
 
 	return $mimetype;
@@ -197,6 +197,9 @@ function scaleImage($x,$y,$cx,$cy)
  */
 function resizeImage($sha1sum,$ext,$maxX,$maxY)
 {
+	if (!function_exists('Imagick'))
+		return false;
+
 	try {
 		global $stockage;
 
@@ -213,7 +216,7 @@ function resizeImage($sha1sum,$ext,$maxX,$maxY)
 		
 		return true;
 	} catch (Exception $e){
-		echo $e;
+		echo strip_tags($e);
 		return false;
 	}
 		
@@ -229,7 +232,7 @@ function getThumbLink($sha1sum,$ext,$x,$y)
 	if(!file_exists($stockage."thumbs/".$sha1sum."_".$x."_".$y.".".$ext))
 	{
 		if (!resizeImage($sha1sum,$ext,$x,$y)){
-			return "templates/img/image-erreur.png";
+			return false;
 		}
 	}
 	

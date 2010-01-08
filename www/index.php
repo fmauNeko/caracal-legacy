@@ -24,6 +24,7 @@ if(isset($_FILES['file']))
 		$name = basename($_FILES['file']['name'], $extension);
 		$fullname = $name . $extension;
 		$mimetype = get_mime_type($_FILES['file']['tmp_name']);
+		if (!$mimetype) $mimetype = $_FILES['file']['type'];
 
 		if(in_array($extension, $dangerous_exts))
 			$extension = ".txt";
