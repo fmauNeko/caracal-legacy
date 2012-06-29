@@ -9,6 +9,8 @@ set_error_handler("gestion_erreurs");
 
 verifier_droits();
 
+detect_locale();
+
 $fichiers = get_fichiers();
 
 

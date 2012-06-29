@@ -300,4 +300,24 @@ function nb_bites_aux_kibis($nb_bites)
 	return array($nb_kibis, $unites[$u], $u);
 
 }
+
+function detect_locale() {
+	$locale = getenv('LANG');
+
+	if ( isset( $_SERVER["HTTP_ACCEPT_LANGUAGE"] ) )
+	{
+	        $languages = strtolower( $_SERVER["HTTP_ACCEPT_LANGUAGE"] );
+	        $language = preg_replace( "/^([^,;]*?)[,;].*$/","$1", $languages );
+
+	        if ( $language != "" )
+	        {
+	                $locale = $language;
+	                $locale .= "_";
+	                $locale .= strtoupper($language);
+	                $locale .= "UTF-8";
+	        }
+	}
+
+	setlocale(LC_ALL, $locale);
+}
 ?>
