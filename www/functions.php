@@ -306,16 +306,16 @@ function detect_locale() {
 
 	if ( isset( $_SERVER["HTTP_ACCEPT_LANGUAGE"] ) )
 	{
+			$matches = array();
 	        $languages = strtolower( $_SERVER["HTTP_ACCEPT_LANGUAGE"] );
-	        $language = preg_replace( "/^([^,;]*?)[,;].*$/","$1", $languages );
+	        preg_match( "/([a-z]{1,8}(-[a-z]{1,8})?)/", $languages, $matches );
 
-	        if ( $language != "" )
-	        {
-	                $locale = $language;
-	                $locale .= "_";
-	                $locale .= strtoupper($language);
-	                $locale .= "UTF-8";
-	        }
+	        list($language, $country) = explode("-", $matches[0]);
+
+            $locale = $language;
+            $locale .= "_";
+            $locale .= strtoupper($country);
+            $locale .= ".UTF-8";
 	}
 
 	setlocale(LC_ALL, $locale);
